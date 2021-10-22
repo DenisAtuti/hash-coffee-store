@@ -16,6 +16,7 @@ html{
 }
 
 body{
+    /* font-size: -10%; */
     font-family: 'Ubuntu', sans-serif;
     position: relative;
     /* background-color: #000000; */
@@ -239,6 +240,7 @@ h4{
 .products.active{
     opacity: 0;
     transition: opacity 0.8s ease ;
+    pointer-events: none;
 }
 .product-container{
     padding: 2rem;
@@ -362,6 +364,7 @@ h4{
     color: var(--border-primary);
 }
 .item-container .item-wrapper .item-card .add-cart{
+    width: 100%;
     font-size: 2rem;
     background-color: var(--button-color);
     border: solid 0.01rem transparent;
@@ -372,11 +375,100 @@ h4{
     padding-bottom: 2rem;
     transition: all 0.5s ease;
     text-transform: uppercase;
+    outline: none;
+    
 }
 .item-container .item-wrapper .item-card .add-cart:hover{
     background-color: transparent;
     border: solid 0.01rem var(--button-color);
     color: var(--button-color);
+    transition: all 0.5s ease;
+}
+
+/* BRAND BASED PRODUCT STYLING */
+.brand-product-container{
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.brand-product-container .brand-product-header{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.brand-product-container .brand-product-header h2{
+    font-size: 6rem;
+}
+.brand-product-container .brand-product-header p{
+    text-align: center;
+    color: var(--border-primary);
+    font-size: 4rem ;
+}
+.brand-product-container .brand-product-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.brand-product-container .brand-product-wrapper 
+.brand-product{
+    cursor: pointer;
+    margin: 2rem;
+}
+.brand-product-container .brand-product-wrapper 
+.brand-product .brand-product-image{
+    height: 30rem;
+    border: solid 0.1rem black;
+}
+.brand-product-container .brand-product-wrapper 
+.brand-product .brand-product-image img{
+    height: 100%;
+    width: auto;
+    padding: 2rem;
+}
+.brand-product-container .brand-product-wrapper 
+.brand-product .brand-product-roast{
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.brand-product-container .brand-product-wrapper 
+.brand-product .brand-product-roast p{
+    border: solid 0.05rem var(--button-color);
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    text-transform: uppercase;
+}
+.brand-product-container .brand-product-wrapper 
+.brand-product .brand-product-name{
+    font-size: 4rem;
+}
+.brand-product-container .brand-product-wrapper 
+.brand-product .brand-product-price{
+    font-size: 3rem;
+    color: var(--border-primary);
+}
+
+.brand-product-container .brand-product-wrapper 
+.brand-product:hover > .brand-add-cart{
+    border: solid 0.01rem var(--button-color);
+    color: var(--button-color);
+    background-color: var(--primary-color);
+    transition: all 0.5s ease;
+}
+.brand-product-container .brand-product-wrapper 
+.brand-product .brand-add-cart{
+    margin-top: 2rem;
+    text-decoration: none;
+    font-size: 2rem;
+    padding: 1rem;
+    color: var(--primary-color);
+    text-align: center;
+    border: solid 0.01rem var(--primary-color);
+    background-color: var(--button-color);
+    text-transform: uppercase;
     transition: all 0.5s ease;
 }
 

@@ -3,6 +3,7 @@ window.addEventListener("load",()=>{
    getBestSellers();
    const itemName =  localStorage.getItem("productName");
    getItemFromServer(itemName)
+   
 })
 
 // MENU FACTIONALITY
@@ -124,15 +125,16 @@ function getItemFromServer(itemName){
    const url = `http://localhost:8080/api/products/item/${itemName}`
    getServerData(url).then(data =>{
       displayItem(data)
+      
    });
 }
 
 function getServerData(url) {
    return fetch(url)
      .then((response) => {
-       if (response.ok) {
+      //  if (response.ok) {
          return response.json();
-       }
+      //  }
      })
      .then((data) => {
        return data;
@@ -163,10 +165,11 @@ function displayItem(item) {
                   <div class="item-name">${item.productName}</div>
                   <div class="item-price">$ ${item.price}</div>
                </div>
-               <div class="add-cart">Buy</div>
+               <button id="Button" class="add-cart">Add to cart</button>
             </div>
    `
    itemContainer.appendChild(newDiv);
+   document.getElementById("Button").disabled = true;
 }
 
 // window.addEventListener("resize",()=>{

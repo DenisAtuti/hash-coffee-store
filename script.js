@@ -90,6 +90,7 @@ async function getMenu() {
 
   const brandSlider = $("#brand-slider");
   slide(brandSlider);
+  displayProductMenuItem()
 }
 
 // BEST SELLER MENU
@@ -245,17 +246,64 @@ function displayProductItem() {
       const itemName = item.querySelector(".product-name").innerHTML
       localStorage.setItem("productName",itemName)
       window.location.href = "item.html"
-      // const productContainer = document.querySelector(".products")
-      // productContainer.innerHTML = " "
-      // const newDiv = document.createElement("div");
-      // newDiv.classList.add("item")
-      // newDiv.innerHTML = `<h1>${item.id} </h1> <h1>${itemName} </h1> `
-      // productContainer.appendChild(newDiv);
-       console.log(item);
-      //  console.log(itemName);
+      //  console.log(item);
       })
     })
 }
-// console.log(localStorage.getItem("productName"));
-// GET PRODUCT BY ID FROM THE SERVER
+
+// GET MENU ITEMS
+function displayProductMenuItem(){
+  const brands = document.querySelectorAll(".brand")
+  brands.forEach(brand =>{
+    brand.addEventListener("click",() =>{
+      const brandName = brand.querySelector(".brand-header").innerHTML;
+      drawBodyBasedonBrand(brandName)
+    })
+  })
+}
+
+// CREATING BODY BASED ON BRAND
+
+function drawBodyBasedonBrand(brandName) {
+  burger.classList.remove("active")
+  productDisplay.classList.remove("active")
+
+  productDisplay.innerHTML =""
+  const newDiv = document.createElement("div")
+  newDiv.classList.add("brand-product-container")
+  newDiv.innerHTML = `
+        <div class="brand-product-header">
+            <h2>${brandName}</h2>
+            <p>Simply the Best</p>
+        </div>
+        <div class="brand-product-wrapper">
+  `
+
+  productDisplay.appendChild(newDiv)
+
+  const url = `http://localhost:8080/api/products/brand/${brandName}`;
+  console.log(brandName);
+  getServerData(url).then(data =>{
+    data.forEach(item =>{
+      const brandProductWrapper = document.querySelector(".brand-product-wrapper");
+      const newDiv2 = document.createElement("div")
+      newDiv2.classList.add("brand-product")
+      newDiv2.innerHTML = `
+            <div class="brand-product-image">
+              <img src="${item.imageUrl}" alt="${item.productName}">
+            </div>
+            <div class="brand-product-roast">
+              <p>${item.roast}</p>
+              <p>${item.profile}</p>
+            </div>
+            <div class="brand-product-name">${item.productName}</div>
+            <div class="brand-product-price">$ ${item.price}</div>
+            <div class="brand-add-cart">Add to cart</div>
+      `
+      brandProductWrapper.appendChild(newDiv2);
+    })
+  })
+  
+  
+}
 
