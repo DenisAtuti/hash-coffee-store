@@ -335,7 +335,7 @@ h4{
 .item-container .item-wrapper .item-card .image-container{
     border: solid 0.01rem black;
     /* background-color:black; */
-    height: 50vh;
+    height: 60vh;
 }
 .item-container .item-wrapper .item-card .image-container img{
     height: 100%;
