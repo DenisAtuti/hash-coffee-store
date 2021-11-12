@@ -9,6 +9,15 @@ menuIcon.addEventListener("click", () => {
   productDisplay.classList.toggle("active");
 });
 
+// when cart icon is clicked on the main page
+function cartIconPressed() {
+  const cartIcon = document.querySelector(".cart-icon")
+  cartIcon.addEventListener("click", () =>{
+    localStorage.setItem("active","active")
+    location.href= "item.html"
+  })
+}
+cartIconPressed() 
 // BRANDS SLINDER
 function slickSliderResize(windowWidth) {
   var answer;
@@ -119,6 +128,8 @@ async function getBestSellers() {
 
   const bestSellerSlider = $("#best-seller-slider");
   slide(bestSellerSlider);
+
+  getBestSellerItem();
 }
 
 
@@ -258,6 +269,7 @@ function displayProductMenuItem(){
     brand.addEventListener("click",() =>{
       const brandName = brand.querySelector(".brand-header").innerHTML;
       drawBodyBasedonBrand(brandName)
+      
     })
   })
 }
@@ -298,12 +310,53 @@ function drawBodyBasedonBrand(brandName) {
             </div>
             <div class="brand-product-name">${item.productName}</div>
             <div class="brand-product-price">$ ${item.price}</div>
-            <div class="brand-add-cart">Add to cart</div>
+           
       `
+      // <div class="brand-add-cart">Add to cart</div>
       brandProductWrapper.appendChild(newDiv2);
+      // showItemBasedOnBrand();
     })
-  })
-  
-  
+    showItemBasedOnBrand();
+  }) 
 }
 
+function showItemBasedOnBrand() {
+  const brandProduct = document.querySelectorAll(".brand-product")
+  brandProduct.forEach(brand =>{
+    brand.addEventListener("click",()=>{
+      const itemName = brand.querySelector(".brand-product-name").innerHTML
+      localStorage.setItem("productName",itemName);
+      window.location.href = "item.html"
+    })
+  })
+}
+
+// ADDING BEST SELLER TO CART PAGE
+
+function getBestSellerItem() {
+  const bestSellerContainer = document.querySelectorAll(".best-seller")
+  // localStorage.removeItem("productName")
+  bestSellerContainer.forEach(item =>{
+    item.addEventListener("click",()=>{
+      const itemName = item.querySelector(".best-seller-span > h4").innerHTML
+      localStorage.setItem("productName",itemName);
+      window.location.href = "item.html"
+      console.log(item);
+    })
+  })
+}
+
+// UPDATING CART COUNT
+
+function cartNumberUpdate() {
+  let cartCount = localStorage.getItem("cartCount");
+  const cartNumber = document.querySelector(".cartNumber")
+
+  if (cartCount) {
+     cartNumber.innerText = cartCount
+  }else{
+     cartNumber.innerText = 0
+  }
+}
+
+cartNumberUpdate();

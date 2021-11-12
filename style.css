@@ -59,10 +59,7 @@ body{
 .navigation .nav ul .nav-link:nth-child(1) a.active::after{
     content: '\25b4';
 }
-/* .navigation .nav ul 
-.nav-link:nth-child(1) a:hover > .burger{
-    opacity: 1;
-} */
+
 .navigation .nav ul .nav-link:nth-child(3) a{
     position: relative;
 }
@@ -75,6 +72,22 @@ body{
     color:var(--span-color);
     font-size: 1.5rem ;
     /* display: none; */
+}
+/* ITEM MENU STYLING */
+.navigation .nav a.nav-link{
+    font-size: 3rem;
+    text-decoration: none;
+    color: var(--primary-text-color);
+    position: relative;
+}
+.navigation .nav a.nav-link span{
+    position:absolute;
+    top:0; 
+    left:100%;
+    padding: 0.5rem;
+    transform: translate(0%,-50%);
+    color:var(--span-color);
+    font-size: 3rem ;
 }
 
 /* BRANDS */
@@ -309,7 +322,7 @@ h4{
 
 /* STYLING SINGLE PRODUCT ITEM */
 .item-container{
-    margin-top: -90vh;
+    /* margin-top: -90vh; */
     overflow-x: hidden;
     /* background-color: red; */
 
@@ -407,18 +420,23 @@ h4{
 }
 .brand-product-container .brand-product-wrapper{
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
+    width: 70vw;
 }
 .brand-product-container .brand-product-wrapper 
 .brand-product{
     cursor: pointer;
-    margin: 2rem;
+    margin: 1rem;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    /* background-color: red; */
+    height: auto;
+    width: 35rem;
 }
 .brand-product-container .brand-product-wrapper 
 .brand-product .brand-product-image{
     height: 30rem;
+    width: 30rem;
     border: solid 0.1rem black;
 }
 .brand-product-container .brand-product-wrapper 
@@ -471,6 +489,193 @@ h4{
     text-transform: uppercase;
     transition: all 0.5s ease;
 }
+    /* CART MODEL */
+.model-container{
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+.model-container.active{
+    opacity:1;
+    pointer-events: auto;
+    transition: opacity 0.5s ease;
+}
+.model-container .model{
+    margin-top:10vh ;
+    float: right;
+    min-width: 20vw;
+    min-height: 90vh;
+    background-color: #fff;
+    overflow-x: hidden;
+   
+}
+.model-container .model .model-header{
+    margin-bottom: 3rem;
+}
+
+.model-container .model .model-header i{
+    font-size: 3rem;
+    margin: 2rem;
+    cursor: pointer;
+}
+.model-container .model .model-header h1{
+    text-align: center;
+    font-size: 5rem;
+}
+.model-container .model .model-item-container{
+    padding-top: 3rem;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    
+}
+
+.model-container .model .model-item-container .model-item{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 1rem;
+    background-color:rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    width: 100%;
+    transition: all 0.5s ease;
+}
+.model-container .model .model-item-container .model-item.active{
+    transform: translateX(100rem);
+    transition: transform 0.5s ease;
+}
+.model-container .model .model-item-container .model-item div{
+    margin: 1rem;
+}
+.model-container .model .model-item-container .model-item .model-image{
+    height: 10rem;
+}
+.model-container .model .model-item-container .model-item .model-image img{
+    height: 100%;
+    object-fit: cover;
+}
+
+.model-container .model .model-item-container .model-item 
+.model-item-content .item-profile{
+    font-size: 1.5rem;
+    color: var(--border-primary);
+    margin-bottom: 0.5rem;
+}
+.model-container .model .model-item-container .model-item 
+.model-item-content .item-brand{
+    font-size: 1.5rem;
+}
+.model-container .model .model-item-container .model-item 
+.model-item-content .item-name{
+    font-size: 2rem;
+    color: var(--button-color);
+    margin-bottom: 1rem;
+}
+
+.model-item-container .model-item .model-item-content .item-quantity-btns button{
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    border: 0.05rem solid black;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.model-item-container .model-item .model-item-content .item-quantity-btns button:active{
+    border: solid 0.05rem var(--border-primary);
+    color: var(--border-primary);
+    transform: scale(0.5);
+    transition: all 0.5s ease;
+}
+.model-item-container .model-item .model-item-content .item-quantity-btns button:nth-child(2){
+    font-size: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border: 0.05rem solid black;
+    padding: 0.5rem 2rem;
+    outline: none;
+    color: var(--button-color);
+    cursor: default;
+}
+
+.model-container .model .model-item-container .model-item 
+.model-item-price{
+    margin-left: auto;
+}
+.model-container .model .model-item-container .model-item 
+.model-item-price{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: grey; */
+}
+.model-container .model .model-item-container .model-item 
+.model-item-price .item-price{
+    margin-bottom: auto;
+    font-size: 3rem;
+    color: var(--border-primary);
+    margin-bottom: 1rem;
+}
+.model-container .model .model-item-container .model-item 
+.model-item-price .item-remove{
+    padding: 1rem 2.5rem;
+    border: 0.1rem solid var(--button-color);
+    background-color: var(--button-color);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.model-container .model .model-item-container .model-item 
+.model-item-price .item-remove:hover{
+    border: 0.1rem solid var(--button-color);
+    background-color: #fff;
+    color: var(--button-color);
+    transition: all 0.5s ease;
+    background-color: transparent;
+}
+.model-container .model .model-item-checkout{
+    /* background-color: gray; */
+    padding:2rem
+}
+.model-container .model .model-item-checkout .model-item-cost{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+.model-container .model .model-item-checkout .model-item-cost p{
+    font-size: 4rem;
+}
+.model-container .model .model-item-checkout .model-item-taxes{
+    font-size: 2rem;
+}
+.model-container .model .model-item-checkout button{
+    margin-top: 2rem;
+    font-size: 2.5rem;
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: var(--button-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    outline: none;
+    border: solid 0.05rem transparent;
+    transition: all 0.5s ease;
+}
+.model-container .model .model-item-checkout button:hover{
+    border: solid 0.05rem var(--button-color);
+    background-color: var(--primary-color);
+    color: var(--button-color);
+    transition: all 0.5s ease;
+}
+
 
     /* RESSPONSIVE DESIGN */
 
@@ -580,6 +785,17 @@ h4{
     .navigation .nav ul .nav-link:nth-child(1) a::after{
         transform: scale(1.1);
     }
+
+    /* ITEM MENU STYLING */
+    .navigation .nav a.nav-link{
+        font-size: 2rem;
+    }
+
+    .navigation .nav a.nav-link span{
+        font-size: 2rem;
+        color: red;
+    }
+
     /* ITEM STYLING */
     .item-container .item-wrapper .item-brand-header .brand-name{
         font-size: 3rem;
@@ -595,6 +811,72 @@ h4{
         margin-top: 1rem;
         padding-top: 1rem;
         padding-bottom: 1rem;
+    }
+
+    /* CART MODEL */
+    .model-container .model{
+        width: 100%                                                      
+    }
+    .model-container .model .model-header{
+        margin-bottom: 1rem;
+    }
+    .model-container .model .model-header i{
+        font-size: 2rem;
+        margin: 1rem;
+    }
+    .model-container .model .model-header h1{
+        font-size: 2.5rem;
+    }
+    .model-container .model .model-item-container .model-item{
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+    }
+    .model-container .model .model-item-container .model-item .model-image{
+        height: 8rem;
+    }
+    .model-container .model .model-item-container .model-item 
+    .model-item-content .item-profile{
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    .model-container .model .model-item-container .model-item 
+    .model-item-content .item-brand{
+        font-size: 1rem;
+    }
+    .model-container .model .model-item-container .model-item 
+    .model-item-content .item-name{
+        font-size: 1rem;
+    }
+    .model-item-container .model-item .model-item-content .item-quantity-btns button{
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .model-item-container .model-item .model-item-content .item-quantity-btns button:nth-child(2){
+        font-size: 1rem;
+    }
+    .model-container .model .model-item-container .model-item 
+    .model-item-price .item-price{
+        font-size: 2rem;
+    }
+    .model-container .model .model-item-container .model-item 
+    .model-item-price .item-remove{
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        
+    }
+    .model-container .model .model-item-checkout .model-item-cost p{
+        font-size: 2rem;
+    }
+    .model-container .model .model-item-checkout .model-item-taxes{
+        font-size: 1.5rem;
+    }
+    .model-container .model .model-item-checkout button{
+        font-size: 1.5rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        background-color: var(--button-color);
+       
     }
     
     
